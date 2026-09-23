@@ -1,7 +1,8 @@
 {
   "version": "1.0",
   "metadata": {
-    "description": "Example manifest. Replace paths with generated first-last-frame clips.",
+    "description": "Example manifest using the ten gesture prompts from the original Avatar-Agent pipeline (gen_0 through gen_9). Replace paths with generated clips.",
+    "source": "pipeline/gesture.py",
     "duration_policy": {
       "under_3_seconds": "static rest frame",
       "3_to_under_5_seconds": "accelerate selected 5-second motion clip",
@@ -9,10 +10,106 @@
     }
   },
   "clips": [
-    {"clip_id":"rest","category":"conduit","caption":"calm resting pose while explaining an idea","path":"clips/rest.mp4","duration":5.0,"motion_peak":0.1,"keywords":["explain","idea"],"verified":true,"static":true},
-    {"clip_id":"iconic_00","category":"iconic","caption":"opens both hands to show the size of an object","path":"clips/iconic_00.mp4","duration":5.0,"motion_peak":0.55,"keywords":["size","show"],"verified":true},
-    {"clip_id":"metaphoric_00","category":"metaphoric","caption":"brings both hands together to express connection","path":"clips/metaphoric_00.mp4","duration":5.0,"motion_peak":0.65,"keywords":["connect","combine"],"verified":true},
-    {"clip_id":"conduit_00","category":"conduit","caption":"opens one palm while explaining an idea","path":"clips/conduit_00.mp4","duration":5.0,"motion_peak":0.45,"keywords":["explain","idea"],"verified":true},
-    {"clip_id":"beat_00","category":"beat","caption":"makes a short downward beat to emphasize a key point","path":"clips/beat_00.mp4","duration":5.0,"motion_peak":0.8,"keywords":["important","key","emphasize"],"verified":true}
+    {
+      "clip_id": "gen_0",
+      "category": "iconic",
+      "caption": "opens both palms upward slowly from the center of the abdomen to waist-chest height, holds, and returns, presenting a concept",
+      "path": "clips/gen_0.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.55,
+      "keywords": ["present", "show", "introduce"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_1",
+      "category": "metaphoric",
+      "caption": "opens both palms upward quickly and widely to chest-shoulder height, holds, and returns, symbolizing openness, possibility, or welcome",
+      "path": "clips/gen_1.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.65,
+      "keywords": ["open", "possibility", "welcome"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_2",
+      "category": "iconic",
+      "caption": "moves the right hand horizontally from the center toward the right with the palm turning forward, then makes two or three small waves to browse content or signal",
+      "path": "clips/gen_2.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.60,
+      "keywords": ["browse", "wave", "sequence"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_3",
+      "category": "iconic",
+      "caption": "spreads both palms upward from the abdomen toward both sides near shoulder height, holds briefly, and returns in a presenting gesture",
+      "path": "clips/gen_3.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.58,
+      "keywords": ["show", "display", "present"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_4",
+      "category": "metaphoric",
+      "caption": "opens both hands forward and upward, brings the palms together at the chest, holds, and returns, symbolizing fusion, combination, or completeness",
+      "path": "clips/gen_4.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.68,
+      "keywords": ["fuse", "combine", "integrate"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_5",
+      "category": "conduit",
+      "caption": "opens both palms upward from the abdomen toward both sides at waist-chest height, holds, and returns in an explanatory open-hand gesture",
+      "path": "clips/gen_5.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.50,
+      "keywords": ["explain", "describe", "idea"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_6",
+      "category": "beat",
+      "caption": "opens both palms symmetrically to the sides and makes small upward-and-downward beats while holding the pose to emphasize the current point",
+      "path": "clips/gen_6.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.82,
+      "keywords": ["emphasize", "important", "point"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_7",
+      "category": "beat",
+      "caption": "raises the right hand from the abdomen to shoulder height with the palm forward and makes two or three small side-to-side waves for emphasis while the left hand stays still",
+      "path": "clips/gen_7.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.78,
+      "keywords": ["emphasize", "attention", "signal"],
+      "verified": true
+    },
+    {
+      "clip_id": "gen_8",
+      "category": "conduit",
+      "caption": "keeps both hands naturally clasped in front of the abdomen while standing upright and attentively explaining, with no hand motion",
+      "path": "clips/gen_8.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.10,
+      "keywords": ["explain", "rest", "transition"],
+      "verified": true,
+      "static": true
+    },
+    {
+      "clip_id": "gen_9",
+      "category": "beat",
+      "caption": "raises the left hand from the abdomen to shoulder height with the palm forward and makes small side-to-side waves for emphasis while the right hand stays still",
+      "path": "clips/gen_9.mp4",
+      "duration": 5.0,
+      "motion_peak": 0.76,
+      "keywords": ["emphasize", "attention", "signal"],
+      "verified": true
+    }
   ]
 }

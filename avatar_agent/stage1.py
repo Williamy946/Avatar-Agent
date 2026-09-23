@@ -83,16 +83,16 @@ class LLMCaptionProvider:
 
 def default_captions() -> List[dict]:
     return [
-        {"category": "iconic", "caption": "opens both hands to show the size of an object"},
-        {"category": "iconic", "caption": "moves one hand along an imagined path between two ideas"},
-        {"category": "metaphoric", "caption": "brings both hands together to express connection and integration"},
-        {"category": "metaphoric", "caption": "raises one hand gradually to express growth or progression"},
-        {"category": "conduit", "caption": "opens one palm while explaining an idea to the audience"},
-        {"category": "conduit", "caption": "gestures gently toward the audience while inviting attention"},
-        {"category": "beat", "caption": "makes a short downward beat to emphasize a key point"},
-        {"category": "beat", "caption": "makes two small rhythmic beats while stressing a conclusion"},
-        {"category": "beat", "caption": "raises one hand briefly to mark the first item in a list"},
-        {"category": "iconic", "caption": "frames a broad shape with both hands while describing it"},
+        {"id": "gen_0", "category": "iconic", "caption": "opens both palms upward slowly from the center of the abdomen to waist-chest height, holds, and returns, presenting a concept", "keywords": ["present", "show", "introduce"]},
+        {"id": "gen_1", "category": "metaphoric", "caption": "opens both palms upward quickly and widely to chest-shoulder height, holds, and returns, symbolizing openness, possibility, or welcome", "keywords": ["open", "possibility", "welcome"]},
+        {"id": "gen_2", "category": "iconic", "caption": "moves the right hand horizontally from the center toward the right with the palm turning forward, then makes two or three small waves to browse content or signal", "keywords": ["browse", "wave", "sequence"]},
+        {"id": "gen_3", "category": "iconic", "caption": "spreads both palms upward from the abdomen toward both sides near shoulder height, holds briefly, and returns in a presenting gesture", "keywords": ["show", "display", "present"]},
+        {"id": "gen_4", "category": "metaphoric", "caption": "opens both hands forward and upward, brings the palms together at the chest, holds, and returns, symbolizing fusion, combination, or completeness", "keywords": ["fuse", "combine", "integrate"]},
+        {"id": "gen_5", "category": "conduit", "caption": "opens both palms upward from the abdomen toward both sides at waist-chest height, holds, and returns in an explanatory open-hand gesture", "keywords": ["explain", "describe", "idea"]},
+        {"id": "gen_6", "category": "beat", "caption": "opens both palms symmetrically to the sides and makes small upward-and-downward beats while holding the pose to emphasize the current point", "keywords": ["emphasize", "important", "point"]},
+        {"id": "gen_7", "category": "beat", "caption": "raises the right hand from the abdomen to shoulder height with the palm forward and makes two or three small side-to-side waves for emphasis while the left hand stays still", "keywords": ["emphasize", "attention", "signal"]},
+        {"id": "gen_8", "category": "conduit", "caption": "keeps both hands naturally clasped in front of the abdomen while standing upright and attentively explaining, with no hand motion", "keywords": ["explain", "rest", "transition"], "static": True},
+        {"id": "gen_9", "category": "beat", "caption": "raises the left hand from the abdomen to shoulder height with the palm forward and makes small side-to-side waves for emphasis while the right hand stays still", "keywords": ["emphasize", "attention", "signal"]},
     ]
 
 
@@ -111,13 +111,24 @@ def build_database(
     for index, item in enumerate(captions or default_captions()):
         category = str(item["category"])
         caption = str(item["caption"])
-        clip_id = f"{category}_{index:02d}"
+        clip_id = str(item.get("id", f"{category}_{index:02d}"))
         output = os.path.join(output_dir, f"{clip_id}.mp4")
         generator.generate(portrait, caption, output, duration)
         verified = verifier.verify(output, caption)
         if not verified:
             continue
-        clips.append(GestureClip(clip_id, category, caption, output, duration=probe_duration(output), verified=True))
+        clips.append(
+            GestureClip(
+                clip_id,
+                category,
+                caption,
+                output,
+                duration=probe_duration(output),
+                verified=True,
+                static=bool(item.get("static", False)),
+                keywords=[str(value).lower() for value in item.get("keywords", [])],
+            )
+        )
     if not clips:
         raise RuntimeError("Stage 1 produced no verified clips")
     save_database(manifest_path, clips, {"portrait": os.path.abspath(portrait), "categories": list(CATEGORIES)})
