@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "metadata": {
+    "description": "Example manifest. Replace paths with generated first-last-frame clips.",
+    "duration_policy": {
+      "under_3_seconds": "static rest frame",
+      "3_to_under_5_seconds": "accelerate selected 5-second motion clip",
+      "5_seconds_or_more": "natural motion speed plus static tail"
+    }
+  },
+  "clips": [
+    {"clip_id":"rest","category":"conduit","caption":"calm resting pose while explaining an idea","path":"clips/rest.mp4","duration":5.0,"motion_peak":0.1,"keywords":["explain","idea"],"verified":true,"static":true},
+    {"clip_id":"iconic_00","category":"iconic","caption":"opens both hands to show the size of an object","path":"clips/iconic_00.mp4","duration":5.0,"motion_peak":0.55,"keywords":["size","show"],"verified":true},
+    {"clip_id":"metaphoric_00","category":"metaphoric","caption":"brings both hands together to express connection","path":"clips/metaphoric_00.mp4","duration":5.0,"motion_peak":0.65,"keywords":["connect","combine"],"verified":true},
+    {"clip_id":"conduit_00","category":"conduit","caption":"opens one palm while explaining an idea","path":"clips/conduit_00.mp4","duration":5.0,"motion_peak":0.45,"keywords":["explain","idea"],"verified":true},
+    {"clip_id":"beat_00","category":"beat","caption":"makes a short downward beat to emphasize a key point","path":"clips/beat_00.mp4","duration":5.0,"motion_peak":0.8,"keywords":["important","key","emphasize"],"verified":true}
+  ]
+}

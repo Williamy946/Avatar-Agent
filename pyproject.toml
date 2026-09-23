@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "avatar-agent-source"
+version = "1.0.0"
+description = "Inference-only multi-agent long digital tutor video pipeline"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23"]
+
+[project.scripts]
+avatar-agent = "avatar_agent.cli:main"
